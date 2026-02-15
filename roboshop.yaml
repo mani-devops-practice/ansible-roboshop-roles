@@ -1,0 +1,6 @@
+- name: Configuring the service {{ component }}
+  become: yes
+  hosts: "{{ component }}"
+  roles: 
+  - "{{ component }}"
+    
