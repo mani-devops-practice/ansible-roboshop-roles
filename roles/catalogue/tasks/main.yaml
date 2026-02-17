@@ -1,10 +1,15 @@
 - name: app setup
+  tags: 
+  - deployment # when run ansible play book with -t <tag_name> from all the tasks in the playbook ot will only run tasks name matching to <tag_name>
   ansible.builtin.import_role:
     name: common
     tasks_from: app-setup.yaml
 
 - name: nodejs setup
-  ansible.builtin.import_role:
+  tags: 
+  - deployment
+  #ansible.builtin.import_role: # This will respect the tag name and even role import functions also runs
+  ansible.builtin.include_role: # include will not run nodejs from comman if run with tags
     name: common
     tasks_from: nodejs-setup.yaml
 
@@ -32,8 +37,9 @@
   when: catalogue_output.stdout  | int < 0
 
 - name: start catalogue
+  tags: 
+  - deployment
   ansible.builtin.service:
     name: catalogue
     state: restarted
     enabled: yes
-
