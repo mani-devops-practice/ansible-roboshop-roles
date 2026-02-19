@@ -1,5 +1,6 @@
 - name: Configuring the service {{ component }}
   become: yes
+  serial: 3
   hosts: "{{ component }}"
   roles: 
   - "{{ component }}"
