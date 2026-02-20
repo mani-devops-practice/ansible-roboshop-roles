@@ -1,0 +1,6 @@
+- name: vault demo
+  hosts: local
+  connection: local
+  become: yes
+  roles:
+    - demo-vault
