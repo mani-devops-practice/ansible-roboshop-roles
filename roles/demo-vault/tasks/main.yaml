@@ -1,0 +1,4 @@
+- name: This is to get password from vault
+  ansible.builtin.debug:
+    msg: "This is the password: {{ PASSWORD }}"
+  
